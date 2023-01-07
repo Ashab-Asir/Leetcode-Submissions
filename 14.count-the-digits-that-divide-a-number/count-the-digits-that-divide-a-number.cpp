@@ -1,4 +1,6 @@
-//Problem Link:
+//Problem Link:https://leetcode.com/problems/count-the-digits-that-divide-a-number/
+
+//Approach
 class Solution {
 public:
     int countDigits(int num) {
