@@ -1,0 +1,32 @@
+Prolem Name:Convert an Array Into a 2D Array With Conditions
+
+
+link:https://leetcode.com/problems/convert-an-array-into-a-2d-array-with-conditions/description/
+
+Code:
+class Solution {
+public:
+    vector<vector<int>> findMatrix(vector<int>& nums) {
+        map<int,int>mp;
+        for(int i=0;i<nums.size();i++){
+            mp[nums[i]]++;
+        }
+        vector<vector<int>>ans;
+        int maxi=INT_MIN;
+        for(auto it:mp){
+            maxi=max(maxi,it.second);
+        }
+        while(maxi){
+            vector<int>ds;
+            for(auto& it:mp){
+                if(it.second>0){
+                    ds.push_back(it.first);
+                    it.second--;
+                }
+            }
+            maxi--;
+            ans.push_back(ds);
+        }
+        return ans;
+    }
+};
