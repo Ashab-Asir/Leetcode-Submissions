@@ -16,6 +16,7 @@ Code:
  */
 class Solution {
 public:
+#find max here
     int findMax(TreeNode* root,int mini,int maxi){
         if(root==NULL){
             return abs(maxi-mini);
@@ -26,6 +27,7 @@ public:
         int r=findMax(root->right,mini,maxi);
         return max(l,r);
     }
+
     int maxAncestorDiff(TreeNode* root) {
        int mini=root->val,maxi=root->val;
        int ans=findMax(root,mini,maxi);
