@@ -1,0 +1,59 @@
+Prolem Name:Find Players With Zero or One Losses
+
+link:https://leetcode.com/problems/find-players-with-zero-or-one-losses/
+
+Code:
+class Solution {
+public:
+    vector<vector<int>> findWinners(vector<vector<int>>& matches) {
+        int m = matches.size();
+        int n = matches[0].size();
+        vector<int> lost;
+        vector<int> winner;
+
+        unordered_map<int, int> winningFreq;
+        unordered_map<int, int> loosingFreq;
+
+        vector<int> finalLoosers;
+        vector<int> finalWinners;
+
+        vector<vector<int>>ans;
+
+        for(int i=0; i<m; i++){
+            winner.push_back(matches[i][0]);
+        }
+
+        for(auto i : winner){
+            winningFreq[i]++;
+        }
+
+        for(int i = 0; i<m; i++){
+            lost.push_back(matches[i][1]);
+        }
+
+        for(auto i : lost){
+            loosingFreq[i]++;
+        }
+
+        for(int i = 0; i<lost.size(); i++){
+            if(winningFreq.find(lost[i]) != winningFreq.end()){
+                winningFreq.erase(lost[i]);
+            }
+        }
+
+        for(auto i : winningFreq){
+            finalWinners.push_back(i.first);
+        }
+
+        for(auto i : loosingFreq){
+            if(i.second == 1){
+                finalLoosers.push_back(i.first);
+            }
+        }
+        sort(finalWinners.begin(), finalWinners.end());
+        sort(finalLoosers.begin(), finalLoosers.end());
+        ans.push_back(finalWinners);
+        ans.push_back(finalLoosers);
+        return ans;
+    }
+};
