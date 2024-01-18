@@ -1,0 +1,21 @@
+Prolem Name:Climbing Stairs
+
+link:https://leetcode.com/problems/climbing-stairs/
+
+Code:
+class Solution {
+public:
+    int climbStairs(int n) {
+        if(n==1||n==2){
+            return n;
+        }
+       int first=1,second=2;
+       int ans=first+second;
+       for(int i=3;i<n;i++){
+           first=second;
+           second=ans;
+           ans=first+second;
+       }
+       return ans;
+    }
+};

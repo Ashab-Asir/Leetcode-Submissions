@@ -1,0 +1,34 @@
+Prolem Name:Insert Delete GetRandom O(1)
+
+link:https://leetcode.com/problems/insert-delete-getrandom-o1/
+
+Code:
+class RandomizedSet {
+public:
+    unordered_map<int,int> check;
+    vector<int> store;
+    RandomizedSet() {
+        
+    }
+    
+    bool insert(int val) {
+        if(check.find(val)!=check.end()) return false;
+        store.push_back(val);
+        check[val]=store.size()-1;
+        return true;
+    }
+    
+    bool remove(int val) {
+        if(check.find(val)==check.end()) return false;
+        int last=store.back();
+        store[check[val]]=last;
+        check[last]=check[val];
+        check.erase(val);
+        store.pop_back();
+        return true;
+    }
+    
+    int getRandom() {
+        return store[rand()%store.size()];
+    }
+};
